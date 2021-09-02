@@ -25,20 +25,20 @@
         $('#result').append(JSON.stringify(result));
     });
     function combine(target, src) {
-    let obj = target;
-    let assigned = target;
-    let converted = 0;  
-    Object.keys(obj).forEach(function(key) {
-        if (src.hasOwnProperty(key)) {
-            converted = parseInt(String(obj[key]).replace("0",src[key]));
-            obj[key] = converted;
-        } else {
-            obj[key] = obj[key];
-        }
-        });
-    result = Object.assign({},target, src, obj); 
-    return  result;
-    }
+  let obj = target;
+  let assigned = target;
+  let converted = 0;  
+  Object.keys(obj).forEach(function(key) {
+      if (src.hasOwnProperty(key)) {
+        converted = obj[key]+src[key];
+        obj[key] = converted;
+      } else {
+        obj[key] = obj[key];
+      }
+    });
+  result = Object.assign({},target, src, obj); 
+  return  result;
+}
 </script>
 </html>
 <style>
