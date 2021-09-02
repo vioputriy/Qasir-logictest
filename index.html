@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Object A :</h2>
+    <h3 id="objectA"></h3>
+    <h2>Object B :</h2>
+    <h3 id="objectB"></h3>
+    <h2>Result Combined:</h2>
+    <h3 id="result"></h3>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js"></script>
+<script>
+    $(document).ready(function(){
+        const objA = {a:10,b:20,c:30};
+        const objB = {a:3,c:6,d:3};
+        const result = combine(objA,objB);
+        $('#objectA').append(JSON.stringify(objA));
+        $('#objectB').append(JSON.stringify(objB));
+        $('#result').append(JSON.stringify(result));
+    });
+    function combine(target, src) {
+    let obj = target;
+    let assigned = target;
+    let converted = 0;  
+    Object.keys(obj).forEach(function(key) {
+        if (src.hasOwnProperty(key)) {
+            converted = parseInt(String(obj[key]).replace("0",src[key]));
+            obj[key] = converted;
+        } else {
+            obj[key] = obj[key];
+        }
+        });
+    result = Object.assign({},target, src, obj); 
+    return  result;
+    }
+</script>
+</html>
+<style>
+    h2{
+        margin-bottom: 0;
+    }
+    h3{
+        margin-top: 0;
+    }
+</style>
